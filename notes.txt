@@ -1,0 +1,9 @@
+edit|view > input area with save button
+
+history
+
+logout (username) > login / signup
+
+ url does not exist -> redirect to _edit/someurl (no edit or history)
+
+ _history/someurl date / chars / view / edit

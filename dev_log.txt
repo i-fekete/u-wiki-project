@@ -1,0 +1,66 @@
+1. Set up templating with jinja2
+	- add jinja2 ('version: latest') to app.yaml
+	- import jinja2
+	- import os
+	- create 'templates' directory
+	- setting up jinja2 environment:
+		- template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+		- jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
+
+2. Create 'Handler' "superclass" upon jinja2, as seen in Udacity web development class
+
+3. Create base.html for template inharitance
+
+4. Create css file
+	- add css directory to static file handlers in app.yaml
+
+5. Password hashing readings: https, hmac, bcrypt (latter being the best algorythm for this)
+
+6. Import Google appengine db
+
+7. Create login and signup handler
+
+8. Create signup/login page, edit css
+	- form method post!
+
+9. Import re, add user input verification.
+
+10. Create signup form with proper error reporting.
+
+11. Create basic user database
+
+12. Add user name already exists error to signup handler
+
+13. Creat make_salt:
+	- import random and string
+
+14. Create make_pw_hash:
+	- import hashlib
+
+15. Upgrade user login with pw_hash
+
+16. Add functions for creating and validating cookies
+
+17. Add cookie handling to login and signup
+
+18. Add logout function
+
+19. Add login error to login page
+
+20. Error handling: import logging
+
+21. Add blog handlers
+
+22. Add wiki database
+
+23. edit base.html
+
+
+
+
+++ Order wiki database searches by date
+
++++
+- swearing
+- caching
+- change date format in history

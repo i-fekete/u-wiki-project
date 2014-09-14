@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<h1 class='title'>Index</h1>
+	
+		{% for keyword in index %}
+			
+			<div style='padding-left:5%'><a href='{{ keyword }}'>{{ keyword }}</a> </div>
+			
+			<hr>
+
+		{% endfor %}
+
+{% endblock %}

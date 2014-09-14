@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+
+		<link rel="stylesheet" type="text/css" href="css/wiki_style.css">
+
+		<title>{% block title %}Wiki project{% endblock %}</title>
+
+	</head>
+	
+	<body>
+		
+		<div id="header">
+			<a href='/index'>index</a> 
+			
+			{% if not index %}
+				{% if not edit %} <!-- see EditHandler -->
+					| <a href='/_edit/{{wiki_kw}}'>edit</a>
+				{% else %}
+					| <a href='/{{wiki_kw}}'>view</a>
+				{% endif %}
+					 / 
+				{% if not history %} <!-- see HistoryHandler -->
+					<a href='/_history/{{wiki_kw}}'>history</a>
+				{% else %}
+					<a href='/{{wiki_kw}}'>view</a>
+				{% endif %}
+			{% endif %}
+			
+			{% if signed_in %} <!-- see Handler.initialize -->
+				| <a href='/logout'>log out ({{user_name}})</a>
+
+			{% else %}				
+				| <a href='/login'>log in</a> or <a href='/signup'>sign up</a>
+
+			{% endif %}
+		</div>
+		
+		{% block body %}
+		{% endblock %}
+
+	</body>
+
+</html>

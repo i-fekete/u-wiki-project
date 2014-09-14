@@ -1,0 +1,52 @@
+body {
+	font-family: Calibri, sans-serif;
+	margin: 0px;
+}
+
+
+.title {
+	padding-left: 5%;
+}
+
+.wiki {
+	padding: 5%;
+}
+
+#profanity {
+	margin-left: 5%;
+	color: red;
+}
+
+table {
+	margin-left: 5%;
+}
+
+textarea {
+	margin-left: 5%;
+	height: 300px;
+	width: 85%;
+}
+
+.error {
+	color: red;
+}
+
+
+.label {
+	text-align: right;
+}
+
+
+#header {
+	background-color: lightgrey;
+	padding: 5px;
+	padding-right: 1%;
+	text-align: right;
+	color: darkgrey;
+	font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: darkgrey;
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<h1 class='title'>Edit</h1>
+	
+	<form method='post'>
+		<p id='profanity'>{{profanity_error}}</p>
+		<textarea name='content'>{{text}}</textarea>
+		<br>
+		<br>
+		<input type='submit' style='margin-left: 5%' value='Save'>
+	</form>
+
+{% endblock %}

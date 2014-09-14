@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	<h1 class='title'>History</h1>
+
+		{% for entry in history %}
+			
+			{% set date_string = entry.date|string() %}
+			<div style='padding-left:5%'>{{ date_string[:16] }} - 
+				{{ entry.text[:100] }} - 
+				<a href='/_redirect/{{entry.key().id()}}?task=view&wiki_kw={{entry.wiki_kw}}'>view</a> |
+				<a href='/_redirect/{{entry.key().id()}}?task=/_edit&wiki_kw={{entry.wiki_kw}}'>edit</a></div>
+			
+			<hr>
+
+		{% endfor %}
+
+{% endblock %}
