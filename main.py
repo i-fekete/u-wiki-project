@@ -5,11 +5,11 @@ import logging, \
 	webapp2
 
 from handlers import *
+from user_handler import *
+from post_handler import *
 from dbs import *
 
 #for making secure cookies
-SECRET = 'somesecretstring'
-ADMINS = ['fekete']
 
 
 #this is a profanity checker to be implemented
@@ -32,6 +32,7 @@ app = webapp2.WSGIApplication([
 	('/signup', SignupHandler),
 	('/logout', LogoutHandler),
 	('/index', IndexHandler),
+	('/users', UserHandler),
 	('/_redirect' + PAGE_RE, RedirectHandler),
 	('/_edit' + PAGE_RE, EditHandler),
 	('/_history' + PAGE_RE, HistoryHandler),

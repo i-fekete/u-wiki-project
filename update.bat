@@ -1,2 +1,2 @@
-appcfg.py update --oauth2 C:\Users\IFekete\Documents\u_wiki_project
+appcfg.py update --oauth2 C:\Users\IFekete\Documents\GitHub\u-wiki-project
 pause

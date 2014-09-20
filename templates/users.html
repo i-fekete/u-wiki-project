@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+	{% for user in users %}
+		<div>
+			Username: {{ user.name }} <br>
+			Admin: {{ user.admin }}
+		</div>
+		<hr>
+	{% endfor %}
+
+{% endblock %}
