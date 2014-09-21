@@ -41,19 +41,19 @@ class Wiki(db.Model):
 
 	@classmethod
 	def load_topic(cls, wiki_kw, update = False):
-		return cls.all().filter('wiki_kw =', wiki_kw).order('-date')
+		#return cls.all().filter('wiki_kw =', wiki_kw).order('-date')
 
-		# key = wiki_kw
-		# posts = memcache.get(key)
+		key = wiki_kw
+		posts = memcache.get(key)
 		
-		# if posts == None or update:
-		# 	logging.info('DB hit')
-		# 	posts = cls.all()
-		# 	posts = posts.filter('wiki_kw =', wiki_kw)
-		# 	posts = posts.order('-date')
+		if posts == None or update:
+			logging.info('DB hit')
+			posts = cls.all()
+			posts = posts.filter('wiki_kw =', wiki_kw)
+			posts = posts.order('-date')
 			
-		# 	posts = list(posts)
-		# 	memcache.set(key, posts)
+			posts = list(posts)
+			memcache.set(key, posts)
 
-		# return posts
+		return posts
 		

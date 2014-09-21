@@ -52,3 +52,32 @@ class Handler(webapp2.RequestHandler):
 		else:
 			self.header = {'signed_in': False}
 		#self.header is passed over to the base.html
+
+	def get_last_post(self, wiki_kw):
+		post_id = self.request.get('post_id')
+
+		if post_id:
+			post_id = int(post_id[1:])
+			post = Wiki.get_by_id(post_id)
+			post = [post] #so that if and else return the same type
+			#this should be served from memcache
+
+		else:
+			post = Wiki.load_topic(wiki_kw)[:1]
+
+		return post
+
+	def init_index(self):
+		key = 'index'
+		index = memcache.get(key)
+		if not index:
+			logging.info('Index DB hit')
+			index = []
+			for keyword in db.GqlQuery("SELECT DISTINCT wiki_kw FROM Wiki"):#.order('wiki_kw')
+				index.append(keyword.wiki_kw)			
+			
+			memcache.set(key, index)
+			return index, True
+
+		else:
+			return index, False
