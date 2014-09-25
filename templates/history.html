@@ -4,16 +4,21 @@
 
 	<h1 class='title'>History</h1>
 
-		{% for entry in history %}
-			
-			{% set date_string = entry.date|string() %}
-			<div style='padding-left:5%'>{{ date_string[:16] }} - 
-				{{ entry.text[:100] }} - 
-				<a href='/_redirect/{{entry.key().id()}}?task=view&wiki_kw={{entry.wiki_kw}}'>view</a> |
-				<a href='/_redirect/{{entry.key().id()}}?task=/_edit&wiki_kw={{entry.wiki_kw}}'>edit</a></div>
-			
-			<hr>
+		<table>
 
-		{% endfor %}
+			{% for entry in history %}
+				
+				{% set date_string = entry.date|string() %}
+				<tr>
+					<td style='padding:5px; border-bottom:1px solid black'>Date: {{ date_string[:16] }}</td>
+					<td style='padding:5px; border-bottom:1px solid black'>Post: {{ entry.text[:100] }}</td> 
+					<td style='padding:5px; border-bottom:1px solid black'><a href='/_redirect/{{entry.key().id()}}?task=view&wiki_kw={{entry.wiki_kw}}'>view</a></td>
+					<td style='padding:5px; border-bottom:1px solid black'><a href='/_redirect/{{entry.key().id()}}?task=/_edit&wiki_kw={{entry.wiki_kw}}'>edit</a></td>
+					<td style='padding:5px; border-bottom:1px solid black'><a href='/_redirect/{{entry.key().id()}}?task=/_del&wiki_kw={{entry.wiki_kw}}'>delete</a></td>
+				</tr>
+
+			{% endfor %}
+
+		</table>
 
 {% endblock %}

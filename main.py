@@ -36,5 +36,6 @@ app = webapp2.WSGIApplication([
 	('/_redirect' + PAGE_RE, RedirectHandler),
 	('/_edit' + PAGE_RE, EditHandler),
 	('/_history' + PAGE_RE, HistoryHandler),
+	('/_del' + PAGE_RE, DeleteHandler),
 	(PAGE_RE, WikiHandler),
 	], debug=True)

@@ -67,17 +67,4 @@ class Handler(webapp2.RequestHandler):
 
 		return post
 
-	def init_index(self):
-		key = 'index'
-		index = memcache.get(key)
-		if not index:
-			logging.info('Index DB hit')
-			index = []
-			for keyword in db.GqlQuery("SELECT DISTINCT wiki_kw FROM Wiki"):#.order('wiki_kw')
-				index.append(keyword.wiki_kw)			
-			
-			memcache.set(key, index)
-			return index, True
-
-		else:
-			return index, False
+	
