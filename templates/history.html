@@ -12,9 +12,9 @@
 				<tr>
 					<td style='padding:5px; border-bottom:1px solid black'>Date: {{ date_string[:16] }}</td>
 					<td style='padding:5px; border-bottom:1px solid black'>Post: {{ entry.text[:100] }}</td> 
-					<td style='padding:5px; border-bottom:1px solid black'><a href='/_redirect/{{entry.key().id()}}?task=view&wiki_kw={{entry.wiki_kw}}'>view</a></td>
-					<td style='padding:5px; border-bottom:1px solid black'><a href='/_redirect/{{entry.key().id()}}?task=/_edit&wiki_kw={{entry.wiki_kw}}'>edit</a></td>
-					<td style='padding:5px; border-bottom:1px solid black'><a href='/_redirect/{{entry.key().id()}}?task=/_del&wiki_kw={{entry.wiki_kw}}'>delete</a></td>
+					<td style='padding:5px; border-bottom:1px solid black'><a href='{{ entry.wiki_kw }}?post_id={{ entry.key().id() }}'>view</a></td>
+					<td style='padding:5px; border-bottom:1px solid black'><a href='/_edit{{ entry.wiki_kw }}?post_id={{ entry.key().id() }}'>edit</a></td>
+					<td style='padding:5px; border-bottom:1px solid black'><a href='/_del{{ entry.wiki_kw }}?post_id={{ entry.key().id() }}'>delete</a></td>
 				</tr>
 
 			{% endfor %}

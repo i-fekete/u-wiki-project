@@ -11,10 +11,8 @@ class EditHandler(Handler):
 			self.write('This page cannot be edited by visitors')
 
 		else:
-			post = self.get_last_post(wiki_kw)
-
-			if post:
-				text = post[0].text
+			text = self.get_text(wiki_kw)
+			if text:
 				self.render('edit.html', wiki_kw = wiki_kw[1:], edit = True, text = text, **self.header)
 				#edit is passed in for the base.html to check which links to display in the header
 			else:
@@ -75,11 +73,10 @@ class HistoryHandler(Handler):
 class WikiHandler(Handler):
 	
 	def get(self, wiki_kw):
-		post = self.get_last_post(wiki_kw)
-		
-		if post:
-			text = post[0].text#.replace('\n', '<br>')
-			#uncomment above to allow proper line brakes in non-html posts
+		#.replace('\n', '<br>') o allow proper line brakes in non-html posts
+
+		text = self.get_text(wiki_kw)
+		if text:
 			self.render('wiki.html', wiki_kw = wiki_kw[1:], text = text, **self.header)
 		else:
 			self.redirect('/_edit%s' % (wiki_kw))
@@ -94,20 +91,13 @@ class IndexHandler(Handler):
 		self.render('index.html', index = index, **self.header)
 
 
-class RedirectHandler(Handler):
-	#This is to handle the edit and view links in the history for older posts
-	def get(self, post_id):
-		task = self.request.get('task')
-		if task == 'view':
-			task = ''
-		wiki_kw = self.request.get('wiki_kw')
-		self.redirect('%s%s?post_id=%s' % (task, wiki_kw, post_id))
-
 class DeleteHandler(Handler):
 	def get(self, wiki_kw):
-		post_id = int(self.request.get('post_id')[1:])
-		post = Wiki.get_by_id(post_id)
-		post.delete()
+		post_id = self.request.get('post_id')
+		if post_id:
+			post_id = int(post_id)
+			post = Wiki.get_by_id(post_id)
+			post.delete()
 
 		Wiki.load_topic(wiki_kw, True)
 

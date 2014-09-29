@@ -33,7 +33,6 @@ app = webapp2.WSGIApplication([
 	('/logout', LogoutHandler),
 	('/index', IndexHandler),
 	('/users', UserHandler),
-	('/_redirect' + PAGE_RE, RedirectHandler),
 	('/_edit' + PAGE_RE, EditHandler),
 	('/_history' + PAGE_RE, HistoryHandler),
 	('/_del' + PAGE_RE, DeleteHandler),

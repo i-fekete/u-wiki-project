@@ -53,9 +53,14 @@ class SignupHandler(Handler):
 class LoginHandler(Handler):
 
 	def get(self):
-		self.render('login.html', **self.header)
+		next_url = self.request.headers.get('referer', '/')
+		self.render('login.html', next_url = next_url, **self.header)
 
 	def post(self):
+
+		next_url = str(self.request.get('next_url'))
+		if not next_url or next_url.startswith('/login'):
+			next_url = '/'
 
 		self.username = self.request.get('username')
 		self.password = self.request.get('password')
@@ -64,7 +69,7 @@ class LoginHandler(Handler):
 		#logging.info(user)
 		if user:
 			self.login(user)
-			self.redirect('/')
+			self.redirect(next_url)
 		else:
 			self.render('login.html', login_error = "Invalid login")
 

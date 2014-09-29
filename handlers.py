@@ -67,4 +67,15 @@ class Handler(webapp2.RequestHandler):
 
 		return post
 
-	
+	def get_text(self, wiki_kw):
+		post_id = self.request.get('post_id')
+
+		if post_id:
+			post_id = int(post_id)
+			post = [Wiki.get_by_id(post_id)]
+		else:
+			post = self.get_last_post(wiki_kw)
+
+		if post:
+			text = post[0].text
+			return text
