@@ -20,3 +20,9 @@ indexes:
   - name: wiki_kw
   - name: date
     direction: desc
+
+- kind: Wiki
+  ancestor: yes
+  properties:
+  - name: date
+    direction: desc

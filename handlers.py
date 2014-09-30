@@ -17,6 +17,9 @@ class Handler(webapp2.RequestHandler):
 		template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 		jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape = True)
 		template = jinja_env.get_template(template)
+
+		kwargs['user2'] = self.user
+		#this is to test if this works, should be made use of
 		
 		self.write(template.render(**kwargs))
 
@@ -53,29 +56,29 @@ class Handler(webapp2.RequestHandler):
 			self.header = {'signed_in': False}
 		#self.header is passed over to the base.html
 
-	def get_last_post(self, wiki_kw):
-		post_id = self.request.get('post_id')
+	# def get_last_post(self, wiki_kw):
+	# 	post_id = self.request.get('post_id')
 
-		if post_id:
-			post_id = int(post_id[1:])
-			post = Wiki.get_by_id(post_id)
-			post = [post] #so that if and else return the same type
-			#this should be served from memcache
+	# 	if post_id:
+	# 		post_id = int(post_id[1:])
+	# 		post = Wiki.get_by_id(post_id)
+	# 		post = [post] #so that if and else return the same type
+	# 		#this should be served from memcache
 
-		else:
-			post = Wiki.load_topic(wiki_kw)[:1]
+	# 	else:
+	# 		post = Wiki.load_topic(wiki_kw)[:1]
 
-		return post
+	# 	return post
 
-	def get_text(self, wiki_kw):
-		post_id = self.request.get('post_id')
+	# def get_text(self, wiki_kw):
+	# 	post_id = self.request.get('post_id')
 
-		if post_id:
-			post_id = int(post_id)
-			post = [Wiki.get_by_id(post_id)]
-		else:
-			post = self.get_last_post(wiki_kw)
+	# 	if post_id:
+	# 		post_id = int(post_id)
+	# 		post = [Wiki.get_by_id(post_id)]
+	# 	else:
+	# 		post = self.get_last_post(wiki_kw)
 
-		if post:
-			text = post[0].text
-			return text
+	# 	if post:
+	# 		text = post[0].text
+	# 		return text

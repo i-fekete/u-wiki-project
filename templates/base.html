@@ -14,18 +14,19 @@
 		
 		<div id="header">
 			<a href='/index'>index</a> 
+			{{user2}}
 			
 			{% if not index %}
 				{% if not edit %} <!-- see EditHandler -->
-					| <a href='/_edit/{{wiki_kw}}'>edit</a>
+					| <a href='/_edit{{path}}'>edit</a>
 				{% else %}
-					| <a href='/{{wiki_kw}}'>view</a>
+					| <a href='{{path}}'>view</a>
 				{% endif %}
 					 / 
 				{% if not history %} <!-- see HistoryHandler -->
-					<a href='/_history/{{wiki_kw}}'>history</a>
+					<a href='/_history{{path}}'>history</a>
 				{% else %}
-					<a href='/{{wiki_kw}}'>view</a>
+					<a href='{{path}}'>view</a>
 				{% endif %}
 			{% endif %}
 			

@@ -6,6 +6,19 @@ import hmac, \
 
 SECRET = 'somesecretstring'
 
+#this is a profanity checker to be implemented
+#def is_profane(text):
+#	connection = urllib.urlopen('http://www.wdyl.com/profanity?q='+text)
+#	
+#	if 'true' in connection.read():
+#		profane = True
+#	else:
+#		profane = False
+#	
+#	connection.close()
+#	return profane
+
+
 def make_secure_val(value):
 	return '%s|%s' % (value, hmac.new(SECRET, value).hexdigest())
 
